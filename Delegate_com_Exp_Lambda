@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Delegate_Action_2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Funcionario> funcionarios = Funcionario.GetFuncionarios();
+
+            Action<Funcionario> minhaAction = delegate(Funcionario funci)
+            {
+                funci.Idade = DateTime.Now.Year - funci.Nascimento.Year;
+            };
+
+            funcionarios.ForEach(minhaAction);
+
+            //percorre a lista
+            foreach (Funcionario funci in funcionarios)
+            {
+                Console.WriteLine(funci.Nome + " " + funci.Idade.ToString());
+            }
+            Console.ReadKey();
+       }
+    }
+}
